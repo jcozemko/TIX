@@ -124,7 +124,7 @@
                     var some='<br>';
                     for (var i = 0; i < len; i++){
                         
-                       some = some + '<a class="artists"' + '#artistName'+'>' + response.items[i].name + '</a><br>';
+                       some = some + '<a class="artists">' + response.items[i].name + '</a><br>';
                     }
                     
                     document.getElementById('top-artists').innerHTML = '<b>Artists</b>: ' + some;
@@ -132,29 +132,16 @@
                 }
             });
               
-              $(function(){
+              
                   $('.artists').click(function(){
                       var artistName = $(this).text();
                       console.log(artistName);
                       var page = 0;
-                      var artistData = {'artistName':artistName, 'page' : page}
-                      $.ajax({
-                          url: 'public/script.js',
-                          data: artistData ,
-                          dataType: 'JSON',
-                          type: 'POST',
-                          contentType: 'application/json',
-                          succes: function(result){
-                              console.log("hi")
-                          },
-                          error : function(e) {
-                              alert(e.status);
-                          }
-                      })
+                      //var artistData = {'artistName':artistName, 'page' : page}
+                      getEvents(page, "bieber");
                           
-                      })
-                      return false;
-                  });
+                      });
+                  
               
               
                 
@@ -380,7 +367,7 @@
         $('#classification').text(json.classifications[0].segment.name + " - " + json.classifications[0].genre.name + " - " + json.classifications[0].subGenre.name);
       }
 
-      getEvents(page, "bieber");
+      
     </script>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -391,7 +378,6 @@
 
           
     
-    <!--<script src="/script.js"></script>-->
     
   </body>
 </html>
